@@ -1,6 +1,7 @@
 import './App.css';
 import Companies from './components/Companies';
-
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 
 
 function App() {
@@ -9,8 +10,10 @@ function App() {
 
   return (
     <div className="App">
-      <h1>I'm the front end!</h1>
+      <Container>
+      <Typography variant="h1" gutterBottom>Peter's Jobly app</Typography>
       <Companies />
+      </ Container>
     </div>
   );
 }
