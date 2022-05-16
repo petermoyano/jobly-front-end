@@ -20,7 +20,16 @@ export default function Companies() {
     return <>
         <Grid spacing={3} container>
 
-                {allCompanies.length === 0 ? "Loading..." : allCompanies.map(c => { return <Company company={c} key={uuidv4()} gutterBottom /> })}
+            {allCompanies.length === 0 ? "Loading..." : allCompanies.map(c => {
+                return <Company
+                    name={c.name}
+                    description={c.description}
+                    handle={c.handle}
+                    numEmployees={c.numEmployees}
+                    logoUrl={c.logoUrl}
+                    key={uuidv4()}
+                    gutterBottom />
+            })}
 
         </Grid>
     </>

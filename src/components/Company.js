@@ -10,9 +10,7 @@ import Grid from '@mui/material/Grid';
 
 
 
-function Company({company}) {
-
-    console.log(company)
+function Company({name, handle, description, numEmployees, logoUrl}) {
 
     const bull = (
         <Box
@@ -27,18 +25,18 @@ function Company({company}) {
         <React.Fragment>
             <CardContent>
                 <Typography variant="h5" component="div" gutterBottom>
-                    {company.name}
+                    {name}
                 </Typography>
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    {company.numEmployees} employees
+                    {numEmployees} employees
                 </Typography>
                 <Typography variant="body2">
-                    {company.description}
+                    Company description: {description}
                     <br />
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">+ Info</Button>
+                <Button size="small">See job postings</Button>
             </CardActions>
         </React.Fragment>
     );
