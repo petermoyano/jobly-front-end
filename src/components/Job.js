@@ -10,34 +10,40 @@ import Grid from '@mui/material/Grid';
 
 function Job({ id, title, companyName, equity, salary, companyHandle }) {
 
-    const card = (
-        <>
-            <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    Job posting number { }
-                </Typography>
-                <Typography variant="h5" component="div">
-                    {companyName}
-                </Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    {salary}
-                </Typography>
-                <Typography variant="body2">
-                    {title}
-                </Typography>
-            </CardContent>
-            <CardActions>
-                <Button size="small">Apply</Button>
-            </CardActions>
-        </>
-    );
-
-
     return (
-        <Box sx={{ minWidth: 275 }}>
-            <Card variant="outlined">{card}</Card>
+        
+        <Grid item xs={12}> 
+            <Box sx={{ minWidth: 500 }}>
+                <Card variant="outlined">
+                <CardContent>
+                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                        Job posting number {id}
+                    </Typography>
+                    <Typography variant="h5" component="div">
+                        {companyName}
+                    </Typography>
+                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                        ${salary}
+                    </Typography>
+                    <Typography variant="body2">
+                        {title}
+                    </Typography>
+                </CardContent>
+                <CardActions>
+                    <Button size="small">Apply</Button>
+                </CardActions>
+          </Card>
         </Box>
+        </Grid>
     );
+
+
+
+
+
+
+
+
 }
 
 export default Job;

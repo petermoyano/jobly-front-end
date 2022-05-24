@@ -10,7 +10,6 @@ export default function Jobs() {
     useEffect(() => {
         async function fetchJobs() {
             const response = await JoblyApi.getJobs();
-            console.log(response)	
             setAllJobs(response.jobs);
         };
         fetchJobs();
