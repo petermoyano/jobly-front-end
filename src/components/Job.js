@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -9,37 +8,36 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 
 
-
-function Company({name, handle, description, numEmployees, logoUrl}) {
+function Job({ id, title, companyName, equity, salary, companyHandle }) {
 
     const card = (
-        <React.Fragment>
+        <>
             <CardContent>
-                <Typography variant="h5" component="div" gutterBottom>
-                    {name}
+                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                    Job posting number { }
+                </Typography>
+                <Typography variant="h5" component="div">
+                    {companyName}
                 </Typography>
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    {numEmployees} employees
+                    {salary}
                 </Typography>
                 <Typography variant="body2">
-                    Company description: {description}
-                    <br />
+                    {title}
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">See job postings</Button>
+                <Button size="small">Apply</Button>
             </CardActions>
-        </React.Fragment>
+        </>
     );
 
 
     return (
-        <Grid item xs={12} sm={6} md={4} lg={3} >
-        <Box>
+        <Box sx={{ minWidth: 275 }}>
             <Card variant="outlined">{card}</Card>
         </Box>
-        </ Grid>
     );
 }
 
-export default Company;
+export default Job;

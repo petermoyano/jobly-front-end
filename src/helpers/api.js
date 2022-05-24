@@ -45,10 +45,14 @@ class JoblyApi {
 
   static async getCompanies() {
     let res = await this.request(`companies/`);
-    console.log(res);
     return res;
   }
-  // obviously, you'll add a lot here ...
+
+  static async getJobs() {
+    let res = await this.request(`jobs/`);
+    return res;
+  }
+
 }
 
 // for now, put token ("testuser" / "password" on class)

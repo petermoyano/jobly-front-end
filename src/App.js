@@ -1,7 +1,8 @@
 import './App.css';
 import Companies from './components/Companies';
+import Jobs from './components/Jobs'
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
+
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './components/Home';
@@ -19,7 +20,8 @@ function App() {
         <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/companies" element={<Companies />} />>
+            <Route path="/companies" element={<Companies />} />
+            <Route path="/jobs" element={<Jobs />} />
           </Routes>
         </BrowserRouter>
       </ Container>
