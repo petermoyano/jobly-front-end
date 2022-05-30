@@ -1,5 +1,6 @@
-
 import * as React from 'react';
+import { Link } from "react-router-dom";
+
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -10,7 +11,7 @@ import Grid from '@mui/material/Grid';
 
 
 
-function Company({name, handle, description, numEmployees, logoUrl}) {
+function Company({ name, handle, description, numEmployees, logoUrl }) {
 
     const card = (
         <React.Fragment>
@@ -27,7 +28,9 @@ function Company({name, handle, description, numEmployees, logoUrl}) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">See job postings</Button>
+                <Link to={`/companies/${handle}`}>
+                    <Button size="small">See job postings</Button>
+                </Link>
             </CardActions>
         </React.Fragment>
     );
@@ -35,9 +38,9 @@ function Company({name, handle, description, numEmployees, logoUrl}) {
 
     return (
         <Grid item xs={12} sm={6} md={4} lg={3} >
-        <Box>
-            <Card variant="outlined">{card}</Card>
-        </Box>
+            <Box>
+                <Card variant="outlined">{card}</Card>
+            </Box>
         </ Grid>
     );
 }
