@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Navbar from './components/Navbar';
 import FilteredCompanyJobs from './components/FilteredCompanyJobs';
 import SignInSide from './components/SignInSide';
+import SignUpSide from './components/SignUpSide';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -23,6 +24,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/SignIn" element={<SignInSide />} />
+            <Route path="/SignUp" element={<SignUpSide />} />
             <Route path="/companies" element={<Companies />} />
             <Route path="/companies/:companyHandle" element={<FilteredCompanyJobs />} />
             <Route path="/jobs" element={<Jobs />} />

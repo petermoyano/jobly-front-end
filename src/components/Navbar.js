@@ -15,6 +15,8 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 import { NavLink } from "react-router-dom"
 
+import './Navbar.css';
+
 const pages = ['Companies', 'Jobs', 'About'];
 const settings = ['My Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -129,9 +131,25 @@ const Navbar = () => {
                                 </Button>
                             </NavLink>
                         ))}
+                    </Box >
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', textDecoration: 'none', flexDirection: 'row-reverse' } }}>
+                        <NavLink to="/SignIn" key="SignIn">
+                            <Button
+                                sx={{ my: 2, color: 'white', display: 'inline-block', textDecoration: 'none' }}
+                            >
+                                Sign In
+                            </Button>
+                        </NavLink>
+                        <NavLink to="/SignUp" key="SignUp">
+                            <Button
+                                sx={{ my: 2, color: 'white', display: 'inline-block', textDecoration: 'none' }}
+                            >
+                                Sign Up
+                            </Button>
+                        </NavLink>
                     </Box>
-
                     <Box sx={{ flexGrow: 0 }}>
+
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                 <SettingsIcon />
