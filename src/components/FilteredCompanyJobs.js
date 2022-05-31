@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import JoblyApi from '../helpers/api';
+import JoblyApi from '../api/api';
 import Job from "./Job";
 import { v4 as uuidv4 } from 'uuid';
 import { useParams } from 'react-router-dom';
@@ -17,7 +17,7 @@ export default function FilteredCompanyJobs() {
             setCompanyInfo(response.company);
         };
         fetchJobs();
-    }, [])
+    }, [companyHandle])
 
 
     return <>

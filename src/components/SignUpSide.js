@@ -12,7 +12,11 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+
 import SignUp from '../assets/SignUpSide.jpg'
+import swal from 'sweetalert';
+
 
 function Copyright(props) {
   return (
@@ -29,14 +33,29 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignUpSide() {
-  const handleSubmit = (event) => {
+export default function SignUpSide({signup}) {
+  const [formData, setFormData] = React.useState({});
+  const [formErrors, setFormErrors] = React.useState([]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(fData => ({ ...fData, [name]: value }))
+  }
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    if(formData.password !== formData.password2){
+      swal(<h3>Entered passwords are not equal</h3>);
+      return;
+    }
+    const {password2, ...signUpData} = formData
+    /* if JoblyApi.signup is succesful, it sets the token from the back end API in state */
+    const response = await signup(signUpData)
+    if(response.success){
+      console.log("Successful signup! Check Token state!")
+    }else {
+      setFormErrors(response.errors);
+    }
   };
 
   return (
@@ -54,7 +73,7 @@ export default function SignUpSide() {
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
             backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundPosition: '25%',
           }}
         />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -83,6 +102,7 @@ export default function SignUpSide() {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                onChange={handleChange}
               />
               <TextField
                 margin="normal"
@@ -93,6 +113,7 @@ export default function SignUpSide() {
                 name="username"
                 autoComplete="username"
                 autoFocus
+                onChange={handleChange}
               />
               <TextField
                 margin="normal"
@@ -103,16 +124,38 @@ export default function SignUpSide() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={handleChange}
               />
               <TextField
                 margin="normal"
                 required
                 fullWidth
                 name="password2"
-                label="Password"
-                type="repeat password"
+                label="Repeat Password"
+                type="password"
                 id="password2"
                 autoComplete="current-password"
+                onChange={handleChange}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="firstName"
+                label="firstName"
+                id="firstName"
+                autoComplete="First Name"
+                onChange={handleChange}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="lastName"
+                label="lastName"
+                id="lastName"
+                autoComplete="Last Name"
+                onChange={handleChange}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}

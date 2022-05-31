@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import JoblyApi from '../helpers/api';
+import JoblyApi from '../api/api';
 import Company from "./Company";
 import { v4 as uuidv4 } from 'uuid';
 

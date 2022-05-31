@@ -13,16 +13,24 @@ import MenuItem from '@mui/material/MenuItem';
 import WorkIcon from '@mui/icons-material/Work';
 import SettingsIcon from '@mui/icons-material/Settings';
 
-import { NavLink } from "react-router-dom"
+import { NavLink, Link } from "react-router-dom";
+import UserContext from '../auth/Usercontext';
 
 import './Navbar.css';
 
+/** Navigation bar for site. Shows up on every page.
+ *
+ * When user is logged in, shows links to main areas of site. When not,
+ * shows link to Login and Signup forms.
+ *
+ */
 const pages = ['Companies', 'Jobs', 'About'];
-const settings = ['My Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Logout'];
 
-const Navbar = () => {
+const Navbar = ({ logout }) => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const { currentUser } = React.useContext(UserContext);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -38,6 +46,39 @@ const Navbar = () => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    const loggedInOptions = () => {
+        return (
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', textDecoration: 'none', flexDirection: 'row-reverse' } }}>
+                <NavLink to="/LogOut" key="LogOut" onClick={logout}>
+                    <Button
+                        sx={{ my: 2, color: 'white', display: 'inline-block', textDecoration: 'none' }}
+                    >
+                        Log Out
+                    </Button>
+                </NavLink>
+            </Box>)
+    }
+
+    const loggedOutOptions = () => {
+        return (
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', textDecoration: 'none', flexDirection: 'row-reverse' } }}>
+            <NavLink to="/SignIn" key="SignIn">
+                <Button
+                    sx={{ my: 2, color: 'white', display: 'inline-block', textDecoration: 'none' }}
+                >
+                    Sign In
+                </Button>
+            </NavLink>
+            <NavLink to="/SignUp" key="SignUp">
+                <Button
+                    sx={{ my: 2, color: 'white', display: 'inline-block', textDecoration: 'none' }}
+                >
+                    Sign Up
+                </Button>
+            </NavLink>
+        </Box>)
+    }
 
     return (
         <AppBar position="static">
@@ -132,22 +173,9 @@ const Navbar = () => {
                             </NavLink>
                         ))}
                     </Box >
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', textDecoration: 'none', flexDirection: 'row-reverse' } }}>
-                        <NavLink to="/SignIn" key="SignIn">
-                            <Button
-                                sx={{ my: 2, color: 'white', display: 'inline-block', textDecoration: 'none' }}
-                            >
-                                Sign In
-                            </Button>
-                        </NavLink>
-                        <NavLink to="/SignUp" key="SignUp">
-                            <Button
-                                sx={{ my: 2, color: 'white', display: 'inline-block', textDecoration: 'none' }}
-                            >
-                                Sign Up
-                            </Button>
-                        </NavLink>
-                    </Box>
+
+                    {currentUser ? loggedInOptions() : loggedOutOptions()}
+
                     <Box sx={{ flexGrow: 0 }}>
 
                         <Tooltip title="Open settings">
@@ -172,9 +200,11 @@ const Navbar = () => {
                             onClose={handleCloseUserMenu}
                         >
                             {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
+                                <Link to={`/${setting}`} key={`${setting}`}>
+                                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                        <Typography textAlign="center">{setting}</Typography>
+                                    </MenuItem>
+                                </Link>
                             ))}
                         </Menu>
                     </Box>
