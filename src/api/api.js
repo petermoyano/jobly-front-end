@@ -65,6 +65,7 @@ class JoblyApi {
    * user must include { username, password, firstName, lastName, email }*/
   static async signup(userData) {
     let res = await this.request(`auth/register`, userData, "post");
+    console.log("From back end this is the data you are sending", userData)
     return res.token;
   }
 

@@ -14,7 +14,7 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
-import SignUp from '../assets/SignUpSide.jpg'
+import SignUpImage from '../assets/SignUpSide.jpg'
 import swal from 'sweetalert';
 
 
@@ -52,7 +52,7 @@ export default function SignUpSide({signup}) {
     /* if JoblyApi.signup is succesful, it sets the token from the back end API in state */
     const response = await signup(signUpData)
     if(response.success){
-      console.log("Successful signup! Check Token state!")
+      console.log("Successful signup! Check Token state!", signUpData)
     }else {
       setFormErrors(response.errors);
     }
@@ -68,7 +68,7 @@ export default function SignUpSide({signup}) {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: `url(${SignUp})`,
+            backgroundImage: `url(${SignUpImage})`,
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],

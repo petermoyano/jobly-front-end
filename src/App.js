@@ -79,7 +79,7 @@ function App() {
 
   /** Handles signup or registration.
    * Automatically logs a user in (sets token in state) upon signup.
-   signupData => {firstName, lastName, username, password, email}*/
+   signupData => {firstName, lastName, email, username, password }*/
   async function signup(signUpData) {
     try {
       let token = await JoblyApi.signup(signUpData);
