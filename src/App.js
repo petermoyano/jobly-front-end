@@ -91,8 +91,7 @@ function App() {
     }
   }
 
-  /** Handles login.
-   */
+  /** Handles login. */
   async function login(loginData) {
     try {
       let token = await JoblyApi.login(loginData);

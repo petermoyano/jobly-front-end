@@ -29,14 +29,24 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignInSide() {
-  const handleSubmit = (event) => {
+export default function SignInSide({login}) {
+  const [formData, setFormData] = React.useState({});
+  const [formErrors, setFormErrors] = React.useState([]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(fData => ({ ...fData, [name]: value }))
+  }
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    /* if JoblyApi.signup is succesful, it sets the token from the back end API in state */
+    const response = await login(formData);
+    if(response.success){
+      console.log("Successful sign in! Check Token state!", formData)
+    }else {
+      setFormErrors(response.errors);
+    }
+
   };
 
   return (
@@ -78,21 +88,23 @@ export default function SignInSide() {
                 margin="normal"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                id="username"
+                label="username"
+                name="username"
+                autoComplete="username"
                 autoFocus
+                onChange={handleChange}
               />
               <TextField
                 margin="normal"
                 required
                 fullWidth
                 name="password"
-                label="Password"
+                label="password"
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={handleChange}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}

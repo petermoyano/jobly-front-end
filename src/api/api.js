@@ -53,12 +53,6 @@ class JoblyApi {
     return res;
   }
 
-  /** Get all jobs. */
-  static async getJobs(title) {
-    let res = await this.request(`jobs`, { title });
-    return res;
-  }
-
   /** Signup for a new user. */
   /*  { user } => { token }
    *
@@ -69,22 +63,30 @@ class JoblyApi {
     return res.token;
   }
 
-  /** Apply to a job. */
-  static async applyToJob(username, id) {
-    await this.request(`users/${username}/jobs/${id}`, {}, "post");
-  }
-
   /** Retrieve token after user login. */
   static async login(data) {
     let res = await this.request(`auth/token`, data, "post");
     return res.token;
   }
-
+  
   /** Edit user profile. */
   static async saveProfile(username, data) {
     let res = await this.request(`users/${username}`, data, "patch");
     return res.user;
   }
+  
+  /** Get all jobs. */
+  static async getJobs(title) {
+    let res = await this.request(`jobs`, { title });
+    return res;
+  }
+
+  /** Apply to a job. */
+  static async applyToJob(username, id) {
+    await this.request(`users/${username}/jobs/${id}`, {}, "post");
+  }
+
+
 
 }
 

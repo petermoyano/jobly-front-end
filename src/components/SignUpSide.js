@@ -50,7 +50,7 @@ export default function SignUpSide({signup}) {
     }
     const {password2, ...signUpData} = formData
     /* if JoblyApi.signup is succesful, it sets the token from the back end API in state */
-    const response = await signup(signUpData)
+    const response = await signup(signUpData);
     if(response.success){
       console.log("Successful signup! Check Token state!", signUpData)
     }else {
