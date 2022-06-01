@@ -1,5 +1,6 @@
 import './App.css';
 import Container from '@mui/material/Container';
+import React from 'react';
 
 import Companies from './components/Companies';
 import Jobs from './components/Jobs'
@@ -121,21 +122,21 @@ function App() {
     <div className="App">
       <Container>
         <BrowserRouter>
-          <Navbar logout={logout}/>
-          <Routes>
-            <UserContext.Provider
-              value={{ currentUser, setCurrentUser, hasAppliedToJob, applyToJob }}>
+          <UserContext.Provider
+            value={{ currentUser, setCurrentUser, hasAppliedToJob, applyToJob }}>
+            <Navbar logout={logout} />
+            <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/SignIn" element={<SignInSide login={login}/>} />
-              <Route path="/SignUp" element={<SignUpSide signup={signup}/>} />
+              <Route path="/SignIn" element={<SignInSide login={login} />} />
+              <Route path="/SignUp" element={<SignUpSide signup={signup} />} />
               <Route path="/Profile" element={<Profile />} />
               <Route path="/LogOut" element={<LogOut />} />
               <Route path="/companies" element={<Companies />} />
               <Route path="/companies/:companyHandle" element={<FilteredCompanyJobs />} />
               <Route path="/jobs" element={<Jobs />} />
               {/* <Route path="/jobs/:id" element={<JobDetails />} /> */}
-            </UserContext.Provider>
-          </Routes>
+            </Routes>
+          </UserContext.Provider>
         </BrowserRouter>
       </ Container>
     </div >
